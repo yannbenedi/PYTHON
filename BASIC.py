@@ -479,6 +479,10 @@ phonebook.pop("John")  # remove a value
 # Modules are imported from other modules using the import command.
 http://docs.python.org/2/library/ # Python standard library
 
+You need to make sure that the directory you wish to import code from is in your system path
+sys.path.insert(0, path_to_your_module_dir)
+from module import function
+
 import urllib   # import the library
 urllib.urlopen(...)   # use it
 
