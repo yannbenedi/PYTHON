@@ -1,4 +1,4 @@
-                                         
+                                        
 """
 http://docs.python.org/2/tutorial/introduction.html
 """
@@ -7,7 +7,7 @@ http://docs.python.org/2/tutorial/introduction.html
 type "python" , it's now a python console.
 
 If you want to go back to command line,
-hit CTRL+Z and type Enter.
+exit()
 
 # -------CODE INTROSPECTION-------
 # Code introspection is the ability to examine classes, functions and keywords to know what they are, 
