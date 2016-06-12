@@ -1,23 +1,25 @@
                                         
-"""
+DOC
 http://docs.python.org/2/tutorial/introduction.html
-"""
-#------RUN PYTHON FROM THE COMMAND LINE---------------------------
+
+RUN FROM COMMAND LINE------------------------------------------------------------------------------------
 
 type "python" , it's now a python console.
 
 If you want to go back to command line,
 exit()
 
--------PYTHON VERSION-------
+PYTHON VERSIONS  ------------------------------------------------------------------------------------
+
 #! python2
 #! python3
 Before the code to select
 
-# -------CODE INTROSPECTION-------
-# Code introspection is the ability to examine classes, functions and keywords to know what they are, 
-# what they do and what they know.
-# Python provides several functions and utilities for code introspection.
+CODE INTROSPECTION ------------------------------------------------------------------------------------
+
+Code introspection is the ability to examine classes, functions and keywords to know what they are,
+what they do and what they know.
+Python provides several functions and utilities for code introspection.
 help() 
 dir()
 hasattr()
@@ -30,7 +32,8 @@ isinstance()
 __doc__
 __name__
 
-#------TRY EXCEPT---------------------------
+TRY EXCEPT ------------------------------------------------------------------------------------
+
 sometimes your code could run into an error TRACEBACK, then it blocks.
 You can use Try Except to keep on going by giving him an alternative way out.
 
@@ -48,10 +51,9 @@ Type some python code in the new window and save it somewhere
 as a .py (the extension is important for the color of the python code)
 then press F5 tu run the code
 
-PRINT ------------------------------------------------------------------------------------
+PRINT \ COMMENTS ------------------------------------------------------------------------------------
 
-In Python 3, use brackets
-print ('hello')
+# Leave comment in one line
 
 Triples quotes prints exactly the content.
 """
@@ -59,27 +61,30 @@ bla
 bla
 """
 
-newline
-\n
+\n newline
+
+In Python 3, use brackets
+print ('hello')
 
 To Print a string + string,    use +
 print 'Value of ' + n
 Where n is a string variable, can t add number with plus, use "," insteand or %d
 
-# To Print String  + integer variable
+To Print String  + integer variable
 print 'Value of %d'  % i # where i is a integer variable
-# %d means “replace with something that is outside the string”  
-# the second % replace the + sign
+%d means “replace with something that is outside the string”
+the second % replace the + sign
 "hello" * 10  #print ten hello
 
 STRING------------------------------------------------------------------------------------
 
-
-word='Help'+'A'
+"string" + "string"  You won't have any space in between.
+"string" , "string"  This will give you a space
 
 Concatenation only works between strings.
-count = 4
-str(count)
+word='Help'+A
+A = 4
+str(A)
 Return 4 as a string
 
 folder = r'C:\doc\scenes\'
@@ -113,6 +118,12 @@ for i in s:
 d = ["caca","dadad","dasdasd"]
 print "\\".join(d)
 	# the "" before the joint enable you to set the separator.
+
+VARIABLES  ------------------------------------------------------------------------------------
+
+unpack variable
+x,y  = (3,5)
+Assign value to variables
 
 #-----OPEN READ FILES ------
 open(filename,mode) # mode can be 'r' to READ, 'w' for WRITING (erasing what is inside) or 'a' APPEND, add to the file
@@ -276,31 +287,24 @@ print x is y # Prints out False
 print not False # Prints out True
 print (not False) == (False) # Prints out False
 
-# -------LOOP----------
-# THE "FOR" LOOP:
-#For loops iterate over a given sequence.
+FOR LOOP ----------------------------------------------------------------------
+
+For loops iterate over a given sequence.
+Better counter loop, but could se WHILE LOOP as well.
+
 primes = [2,3,5,7]
 for a in primes:
     print a
-    
-for x in range(0,10):
 
+for x in xrange(0,10):
+    print x
 
 list = [['first',10],['second',20],['third',30]]
-
-for x,y in caca:
+for x,y in list:
     print y
-    
-#USING XRANGE
-if you use a for in range (1million), it s going to take a lot of memory
-not if you use xrange 
 
-colors= ["red","blue"]
-for color in colors:
-	print color
-	
-#USING REVERSE LOOP
-for color in reversed(colors):
+REVERSE LOPP ----
+for color in reversed(colorsList):
 	print color
 	
 # LOOPING OVER A COLLECTION AND INCICES
@@ -333,26 +337,28 @@ def fond(seq.target):
 
 	#in every for loop , there is an if
 	
-# UNPACKING SEQUENCIES
+UNPACKING SEQUENCIES ----
+
 d= "ours", 0x30, "ya@gmail.com"
 dAnimal,dCode,dEmail = d
 print dEmail
 print dAnimal
 	
-# you can go for each element in a string thanks to the for loop:
-thing = "spam!"
-for c in thing:
-    print c
-# "WHILE" LOOP:
+
+WHILE LOOP ------------------------
+Use that as a counter
+
 count = 0
 while count < 5:
     print count
-    count += 1
-# WHILE ELSE and the "BREAK" and "CONTINUE" STATEMENT
-# the ELSE in a WHILE STATEMENT, runs when the evaluation is False
-# the Break quit a loop, and CONTINUE skip the rest and continue.
-import random
+    count += 1    This increment by value 1
 
+
+WHILE ELSE ----
+the ELSE in a WHILE STATEMENT, runs when the evaluation is False
+the Break quit a loop, and CONTINUE skip the rest and continue.
+
+import random
 print "Lucky Numbers! 3 numbers will be generated."
 print "If one of them is a '5', you lose!"
 
@@ -366,6 +372,14 @@ while count < 3:
         break
 else:
     print "You win!"
+
+
+WHILE TRUE LOOP ----
+Creates an infinite loop
+
+while True:
+    print 'action'
+
 #------FUNCTIONS---------------
 def my_function(): # function without argument
 	'''
@@ -578,7 +592,10 @@ http://docs.python.org/2/tutorial/errors.html#handling-exceptions
 
 
 
-
+PYCHARM -----------------------------------------------------------------------
+Change Python version
+File -> Settings
+Preferences->Project Interpreter->Python Interpreters
 
 
   
