@@ -9,6 +9,11 @@ type "python" , it's now a python console.
 If you want to go back to command line,
 exit()
 
+-------PYTHON VERSION-------
+#! python2
+#! python3
+Before the code to select
+
 # -------CODE INTROSPECTION-------
 # Code introspection is the ability to examine classes, functions and keywords to know what they are, 
 # what they do and what they know.
@@ -43,13 +48,23 @@ Type some python code in the new window and save it somewhere
 as a .py (the extension is important for the color of the python code)
 then press F5 tu run the code
 
-#------PRINT---------------------------
-#triple quotes print exaclt what s inside, as it is """...newlines and stufff"""
-\n # newline
-\ # newline in your script but won t affect your print, just for clarity
+PRINT ------------------------------------------------------------------------------------
 
-#To Print a string + string,    use +
-print 'Value of ' + n # where n is a string variable, can t add number with plus, use "," insteand or %d
+In Python 3, use brackets
+print ('hello')
+
+Triples quotes prints exactly the content.
+"""
+bla
+bla
+"""
+
+newline
+\n
+
+To Print a string + string,    use +
+print 'Value of ' + n
+Where n is a string variable, can t add number with plus, use "," insteand or %d
 
 # To Print String  + integer variable
 print 'Value of %d'  % i # where i is a integer variable
@@ -57,12 +72,20 @@ print 'Value of %d'  % i # where i is a integer variable
 # the second % replace the + sign
 "hello" * 10  #print ten hello
 
-#-----STRINGS--------
-word='Help'+'A'    #create
+STRING------------------------------------------------------------------------------------
 
-# concatenation only works with strings.
+
+word='Help'+'A'
+
+Concatenation only works between strings.
 count = 4
-str(count) # return 4 as a string
+str(count)
+Return 4 as a string
+
+folder = r'C:\doc\scenes\'
+raw format, all the content is a string regardless of any character inside
+Or you can use Escape character (\) which block the functionality of any character
+print 'I\'m'
 
 print len(word) # return 5, "HelpA" is 5 characters long
 print astring.index("A") # return 4. The letter 'A' is 5 characters away from the beginning
