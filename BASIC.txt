@@ -125,17 +125,28 @@ unpack variable
 x,y  = (3,5)
 Assign value to variables
 
-#-----OPEN READ FILES ------
+GLOBAL LOCAL ----
+
+global x = 5
+
+
+OPEN READ FILES ---------------------------------------------------------------------------
+
+OPEN MODE ----
 open(filename,mode) # mode can be 'r' to READ, 'w' for WRITING (erasing what is inside) or 'a' APPEND, add to the file
 
-with open('tmp.txt') as f: # when we open the file, it's now available to us
-    data = f.read()
-    
-fileName = "randomText.txt"
+READ ----
+
+with open(text) as f:
+    print f.read()
+Print full text
+
 file = open(fileName,'r')
-print file.readline() # read line by line
-# return an empty string at the end of the file ""
-# so you can use a WHILE to read a file
+print file.readline() # read one line
+print file.readlines() # read each line , add to a list
+
+Return an empty string at the end of the file ""
+so you can use a WHILE to read a file
 
 line = file.readline()
 while line != '':
@@ -180,8 +191,11 @@ to_file.write('Copy\n')
 to_file.write(contents)
 to_file.close() 
     
-# -------USER INPUT-------
+USER INPUT -------------------------------
+
 name=raw_input("Type your name")
+
+
 	
 #-----FORMAT STRINGS------
 #Multiple integer variable
@@ -200,16 +214,23 @@ format_string = "Hello"
 print  format_string,'%s %s. Your current balance is %.2f $.' % data
 
 
+LIST \ TUPLES ---------------------------------------------------------------------
+
 #-----LIST---------
-a= [] #create empty list
-a*10  # repeat the sequence ten times
-a[0:2] = [1, 12]    # Replace some items
-a[0:2] = []   # Remove some
-a[1:1] = ['bletch', 'xyzzy']   # Insert some
-a[:0] = a   # Insert (a copy of) itself at the beginning
-a[:] = []   # Clear the list: replace all items with an empty list
-a[0] [0:3]  #get the first 3 elements of the first element
-a.append(10)  #add to the list
+a= []                           #create empty list
+a*10                            # repeat the sequence ten times
+a[0:2] = [1, 12]                # Replace some items
+a[0:2] = []                     # Remove some
+a[1:1] = ['bletch', 'xyzzy']    # Insert some
+a[:0] = a                       # Insert (a copy of) itself at the beginning
+a[:] = []                       # Clear the list: replace all items with an empty list
+a[0] [0:3]                      #get the first 3 elements of the first element
+a.append(10)                    #add to the list
+a.insert(2,10)                  # Add 10 to the index 2
+a.remove(2)
+a.index(1)                      # iv o index of number
+a.count(6)
+a.sort()                        # modiify and sort your list
 
 #-----NESTED LIST---------
 # it correspond to a list in a list
@@ -220,6 +241,7 @@ listA[0][1] == 25 # but you can still access the elements within the list
 
 
 # -----LIST COMPREHENSION------
+
 # List Comprehensions is a very powerful tool, which creates a new list based on another list, in a single, readable line.
 sentence = "the quick brown fox jumps over the lazy dog"
 words = sentence.split()
@@ -228,13 +250,19 @@ for word in words:
     if word != "the":
         word_lengths.append(len(word))
   
-# ------ TUPLES -----------  
+# ------ TUPLES -----------
+
+You can't modify it.
+
 tupple = ('a',3,-0.2)
 print tupple[2]
 # you can still access the elements of a tupple, but you can't modify them as a lits
 # to see what tools you can use with tuples, use dir(tuple)
-        
-# ------SETS-------
+
+
+
+SET -----------------------------------------------------------------------------------------
+
 # Sets are lists with no duplicate entries. Let's say you want to collect a list of words used in a paragraph:
 print set("my name is Eric and Eric is my name".split())
 # Sets are a powerful tool in Python since they have the ability to calculate differences and intersections between other sets. 
@@ -260,32 +288,49 @@ set(['Jill'])
 >>> a.union(b)
 set(['Jill', 'Jake', 'John', 'Eric'])
 
-#-----CONDITIONS----------
-# BOLLEANS OPERATOR
-if name == "John" and age == 23: # AND both need to be TRUE
-if name == "John" or name == "Rick": # OR only one would give TRUE
-# IN OPERATOR:
+CONDITIONS----------------------------------------------------------------------
+
+if x != y
+means if Not Equal
+
+if name == "John" and age == 23:
+They both need to be True
+
+if name == "John" or name == "Rick":
+Only one has to be True
+
+
+IN OPERATOR ----
+
 name = "John"
-if name in ["John", "Rick"]: # 
-# IF ELSE:
+if name in ["John", "Rick"]:
+
+IF ELSE ----
+
 if name in a:
   print a
 elif name in b:
   print b
 else:
   print c
-# THE IS OPERATOR:
-#the "is" operator does not match the values of the variables, but the instances themselves
+
+IS OPERATOR ----
+
+The "is" operator does not match the values of the variables, but the instances themselves
 x = [1,2,3]
 y = [1,2,3]
 print x == y # Prints out True
 print x is y # Prints out False
 
 
-# THE NOT OPERATOR:
-#Using "not" before a boolean expression inverts it:
-print not False # Prints out True
-print (not False) == (False) # Prints out False
+NOT OPERATOR ----
+
+Using "not" before a boolean expression inverts it:
+print not False
+Prints out True
+
+print (not False) == (False)
+Prints out False
 
 FOR LOOP ----------------------------------------------------------------------
 
@@ -380,7 +425,8 @@ Creates an infinite loop
 while True:
     print 'action'
 
-#------FUNCTIONS---------------
+FUNCTION --------------------------------------------------------
+
 def my_function(): # function without argument
 	'''
 	(number,number)-> number   help when you call the function
@@ -397,7 +443,14 @@ def sum_two_numbers(a, b):
 # after this line x will hold the value 3!
 x = sum_two_numbers(1,2)
 
-#-------CLASSES AND OBJECTS--------
+You acn prefill with default vales.
+def simple(num1,num2=10)
+simple(2) # just 1 argument is enough as num 2 is defined already
+
+
+
+CLASSES AND OBJECTS  --------------------------------------------------------
+
 #Objects are an encapsulation of variables and functions into a single entity.
 class MyClass(object):
       variable = "blah"
@@ -511,9 +564,10 @@ for name, number in phonebook.iteritems():
 del phonebook["John"] # remove a value
 phonebook.pop("John")  # remove a value
 
-#-----MODULES AND PACKAGES----------
-#Modules in Python are simply Python files with the .py extension, which implement a set of functions. 
-# Modules are imported from other modules using the import command.
+MODULE PACKAGE -----------------------------------------------------
+
+Modules in Python are simply Python files with the .py extension, which implement a set of functions.
+Modules are imported from other modules using the import command.
 http://docs.python.org/2/library/ # Python standard library
 
 You need to make sure that the directory you wish to import code from is in your system path
@@ -523,34 +577,60 @@ from module import function
 import urllib   # import the library
 urllib.urlopen(...)   # use it
 
-dir(urllib)   #We can look for which functions are implemented in each module by using the dir function:
-#When we find the function in the module we want to use, 
-# we can read about it more using the help function, inside the Python interpreter
+When your import a module, it'll run it.
+To avoid that, add:
+
+if __name__ == '__main__':
+    print "blabla"    # This portion will only be read if you're calling the name of the file
+
+dir(urllib)
+We can look for which functions are implemented in each module by using the dir function:
+When we find the function in the module we want to use,
+we can read about it more using the help function, inside the Python interpreter
 help(urllib.urlopen)  
 
-# Writing Python modules is very simple. To create a module of your own, simply create a new .py file with the module name,
-# and then import it using the Python file name (without the .py extension) using the import command.
+Writing Python modules is very simple. To create a module of your own, simply create a new .py file with the module name,
+and then import it using the Python file name (without the .py extension) using the import command.
 
-# WRITING PACKAGES
-# Packages are namespaces which contain multiple packages and modules themselves. 
-# They are simply directories, but with a twist.
+IMPORT MODULE ----
 
-# Each package in Python is a directory which MUST contain a special file called __init__.py. 
-# This file can be empty, and it indicates that the directory it contains is a Python package, 
-# so it can be imported the same way a module can be imported.
+Python comes with Modules
+C\Python27\Lib
 
-# If we create a directory called foo, which marks the package name, 
-# we can then create a module inside that package called bar. 
-# We also must not forget to add the __init__.py file inside the foo directory.
+Third party Modules
+C\Python27\Site-package
 
-# To use the module bar, we can import it in two ways:
+import statistics as s # you call statistic by typing only s
+x = s.variance(example_list)
+
+from statistics import variance         # you don't have to type statistics anymore
+from statistics import variance as v    # you don t have to type statistic, and you can call variance just with v
+from statistic import *                 # import all
+
+When importing a module, python will look in Local, sitepackages, lib
+
+
+WRITE PACKAGE ----
+
+Packages are namespaces which contain multiple packages and modules themselves.
+They are simply directories, but with a twist.
+
+Each package in Python is a directory which MUST contain a special file called __init__.py.
+This file can be empty, and it indicates that the directory it contains is a Python package,
+so it can be imported the same way a module can be imported.
+
+If we create a directory called foo, which marks the package name,
+we can then create a module inside that package called bar.
+We also must not forget to add the __init__.py file inside the foo directory.
+
+To use the module bar, we can import it in two ways:
 import foo.bar
 from foo import bar
-# In the first method, we must use the foo prefix whenever we access the module bar. 
-# In the second method, we don't, because we import the module to our module's namespace.
+In the first method, we must use the foo prefix whenever we access the module bar.
+In the second method, we don't, because we import the module to our module's namespace.
 
-# The __init__.py file can also decide which modules the package exports as the API, 
-# while keeping other modules internal, by overriding the __all__ variable, like so:
+The __init__.py file can also decide which modules the package exports as the API,
+while keeping other modules internal, by overriding the __all__ variable, like so:
 __init__.py:
 __all__ = ["bar"]
 
@@ -583,6 +663,41 @@ def bar(first, second, third, **options):
 
 result = bar(1, 2, 3, action = "sum", return = "first")
 print "Result: %d" % result
+
+
+PYTHON PACKAGE \ MODULE INSTALL PIP -------------------------------------------------------------
+
+pip install matplotlib # install matplotlib
+
+pip can install wheel file
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+Downlolad your wheel, and go in CMD and type
+pip install numPy.whl
+
+INTERESTING MODULES -------------------------
+
+STATISTICS ----
+import statistics
+
+CSV ----
+Comma Separated Variable
+This module enables you to read and extract data from a .csv file (could be text file)
+
+with open('example.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')        #split by the delimiter provided
+
+    dates = []
+    colours = []                                        #empty list to store next extracted data
+
+    for row in readCSV:                                 #parse csv file
+        colour = row[3]
+        date = [0]
+
+        dates.append(date)                              # add to the list
+        colours.append(colour)
+
+
 
 # ------REGULAR EXPRESSION------
 http://www.learnpython.org/page/Regular%20Expressions
