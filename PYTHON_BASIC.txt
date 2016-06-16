@@ -39,9 +39,9 @@ You can use Try Except to keep on going by giving him an alternative way out.
 
 x='Hello'
 try:
-	out=int(x) this will give you an error because it's a string
-except:
-	out= -1
+	out=int(x)          # error as x is a string
+except Exception as e:
+	print e
 
 #------USE PYTHON IDLE---------------------------
 
@@ -59,6 +59,10 @@ Triples quotes prints exactly the content.
 """
 bla
 bla
+============
+great to print design
+============
+
 """
 
 \n newline
@@ -539,8 +543,10 @@ print milton.calculate_wage(10)
 # A dictionary is a data type similar to arrays, but works with keys and values instead of indexes.
 
 phonebook = {}
-phonebook["John"] = 938477566
-phonebook["Jack"] = 938377264
+phonebook["John"] = [938477566 , 'red']
+phonebook["Jack"] = [938377264 , 'blue']
+
+
 # OR this way
 
 phonebook = {
@@ -549,14 +555,13 @@ phonebook = {
     "Jill" : 947662781
 }
 
->>>print phonebook["John"]
-938477566
+print phonebook["John"][1]
 
->>>'Jack' in phonebook
+'Jack' in phonebook
 True
 
-# add to a dictionnary
->>>phonebook["yann"] = 575454646
+Ad to a dictionnary
+phonebook["yann"] = 575454646
 
 for name, number in phonebook.iteritems():
     print "Phone number of %s is %d" % (name, number)
@@ -659,7 +664,7 @@ def bar(first, second, third, **options):
     if options.get("return") == "first":
         return first
 
-...
+
 
 result = bar(1, 2, 3, action = "sum", return = "first")
 print "Result: %d" % result
@@ -679,6 +684,32 @@ INTERESTING MODULES -------------------------
 
 STATISTICS ----
 import statistics
+
+OS ----
+
+import os
+curDir = os.getcwd()
+
+os.mkdir('newDir') create new directory
+os.rename('newDir'. 'newDir2')
+os.rmdir('newDir2')
+
+SYS ----
+import sys
+
+URLLIB URLPARSE----
+access the internet
+
+import urllib
+
+x = urllib.urlopen('https://www.google.com')
+print x.read()              # print source code
+
+You'll have to parse the HTML to extract data
+
+TKINTER ---
+import Tkinter import *     # import tkinter on python 32
+
 
 CSV ----
 Comma Separated Variable
