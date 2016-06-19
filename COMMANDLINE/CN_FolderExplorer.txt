@@ -1,0 +1,267 @@
+@echo off
+title EPISODE SELECTION
+color 81
+:restart
+
+REM ---- LIST  OF EPISODES -----------
+
+CLS
+ECHO.
+ECHO./--- LIST OF EPISODES ---/
+ECHO.
+    echo. 1   GB301_TheRex
+    echo. 2   GB302_TheShell
+    echo. 3   GB303_TheFan
+    echo. 4   GB304_ThePuppy
+    echo. 5   GB305_TheJoy
+    echo. 6   GB306_TheCoach
+    echo. 7   GB307_Name
+    echo. 8   GB308_Gripes
+    echo. 9   GB309_Hole
+    echo. 10  GB310_Vacation
+    echo. 11  GB311_Recipe
+    echo. 12  GB312_People
+ECHO.
+REM ---- SELECTION OF EPISODE --------
+set /p Episode= Select Episode:...
+
+IF %Episode%== 12 GOTO GB312_People
+IF %Episode%== 11 GOTO GB311_Recipe
+IF %Episode%== 10 GOTO GB310_Vacation
+IF %Episode%== 9  GOTO GB309_Hole
+IF %Episode%== 8  GOTO GB308_Gripes
+IF %Episode%== 7  GOTO GB307_Name
+IF %Episode%== 6  GOTO GB306_TheCoach
+IF %Episode%== 5  GOTO GB305_TheJoy
+IF %Episode%== 4  GOTO GB304_ThePuppy
+IF %Episode%== 3  GOTO GB303_TheFan
+IF %Episode%== 2  GOTO GB302_TheShell
+IF %Episode%== 1  GOTO GB301_TheRex
+
+GOTO end
+
+REM ---- ASSIGN INPUT TO EPISODES ------
+
+:GB301_TheRex
+SET Episode=GB301_TheRex
+GOTO UserShot
+
+:GB302_TheShell
+SET Episode=GB302_TheShell
+GOTO UserShot
+
+:GB303_TheFan
+SET Episode=GB303_TheFan
+GOTO UserShot
+
+:GB304_ThePuppy
+SET Episode=GB304_ThePuppy
+GOTO UserShot
+
+:GB305_TheJoy
+SET Episode=GB305_TheJoy
+GOTO UserShot
+
+:GB306_TheCoach
+SET Episode=GB306_TheCoach
+GOTO UserShot
+
+:GB307_Name
+SET Episode=GB307_Name
+GOTO UserShot
+
+:GB308_Gripes
+SET Episode=GB308_Gripes
+GOTO UserShot
+
+:GB309_Hole
+SET Episode=GB309_Hole
+GOTO UserShot
+
+:GB310_Vacation
+SET Episode=GB310_Vacation
+GOTO UserShot
+
+:GB311_Recipe
+SET Episode=GB311_Recipe
+GOTO UserShot
+
+:GB312_People
+SET Episode=GB312_People
+GOTO UserShot
+
+REM ---- USER SELECTION ------
+:UserShot
+SET Animatic=T:\Team\Season 3\%Episode%\05_LAYOUT\03_REVIEW_EDITS
+SET BgReview=T:\Team\Season 3\%Episode%\06_BACKGROUND\01_WIP\02_REVIEW_JPGS
+SET Reference=T:\Team\Season 3\%Episode%\06_BACKGROUND\01_WIP\03_REFERENCES
+SET localBgRoot=C:\YANNB_Local\GUMBALL\%Episode%
+SET serverBgRoot=T:\Team\Season 3\%Episode%\06_BACKGROUND\01_WIP\01_SCENES
+
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO.
+ECHO. Extra Folder
+ECHO. a/ Animatic
+ECHO. r/ Review
+ECHO. f/ References
+ECHO. l/ Open Local BG Root
+ECHO. s/ Open Server BG Root
+ECHO.
+ECHO. z/ Go back to select episodes
+ECHO.
+
+set /p shot=Shot Number or extra folder: (3 digits number):...
+IF %shot%== a  GOTO openAnimatic
+IF %shot%== r  GOTO openReview
+IF %shot%== f  GOTO openRef
+IF %shot%== z  GOTO restart
+IF %shot%== l  GOTO openLocalBgRoot
+IF %shot%== s  GOTO openServerBgRoot
+
+REM ---- Setting Path ------
+
+SET Shot=Sc%shot%
+SET BGserver=T:\Team\Season 3\%Episode%\06_BACKGROUND\01_WIP\01_SCENES\%shot%
+SET BGserverCreation=T:\Team\Season 3\%Episode%\06_BACKGROUND\01_WIP\01_SCENES
+SET BGlocal=C:\YANNB_Local\GUMBALL\%Episode%\%shot%
+SET LayoutFolder=T:\Team\Season 3\%Episode%\05_LAYOUT\02_APPROVED\%shot%
+
+
+REM ---- User Selection ------
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Shot: %shot%
+
+ECHO.
+ECHO. 1/ Background Local
+ECHO. 2/ Background Server
+ECHO. 3/ Layout Approved
+ECHO.
+ECHO. z/ Go back to select episodes
+ECHO. x/ Go back to select shots
+ECHO.
+
+set /p UserSel=BG Local, Server or Layout ?...
+
+IF %UserSel%== x  GOTO UserShot
+IF %UserSel%== z  GOTO restart
+IF %UserSel%== 3  GOTO openLayout
+IF %UserSel%== 2  GOTO openServer
+IF %UserSel%== 1  GOTO openLocal
+
+REM ---- OPEN PROJECT WINDOW-------
+
+:openLayout
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Shot: %shot%
+ECHO. Layout
+ECHO.
+
+IF NOT EXIST "%LayoutFolder%" GOTO dontExist 
+explorer "%LayoutFolder%"
+GOTO end
+
+:openReview
+IF NOT EXIST "%BgReview%" GOTO dontExist 
+explorer "%BgReview%"
+GOTO end
+
+
+:openRef
+CLS
+ECHO.
+ECHO. Episode: %Reference%
+ECHO. Reference
+ECHO.
+
+IF NOT EXIST "%Reference%" GOTO dontExist 
+explorer "%Reference%"
+GOTO end
+
+:openAnimatic
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Shot: %shot%
+ECHO. Animatic
+ECHO.
+
+IF NOT EXIST "%Animatic%" GOTO dontExist 
+explorer "%Animatic%"
+GOTO end
+
+:openServer
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Shot: %shot%
+ECHO. Background Server
+ECHO.
+
+IF NOT EXIST "%BGserver%" GOTO createFolderServer 
+explorer "%BGserver%"
+GOTO end
+
+:openServerBgRoot
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Background Local ROOT
+ECHO.
+explorer "%serverBgRoot%"
+GOTO end
+
+:openLocal
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Shot: %shot%
+ECHO. Background Local
+ECHO.
+IF NOT EXIST "%BGlocal%" GOTO createFolderLocal 
+explorer "%BGlocal%"
+GOTO end
+
+:openLocalBgRoot
+CLS
+ECHO.
+ECHO. Episode: %Episode%
+ECHO. Background Local ROOT
+ECHO.
+explorer "%localBgRoot%"
+GOTO end
+
+:dontExist
+ECHO.Path doesn't exist.
+PAUSE
+
+:createFolderLocal
+ECHO.Do you want to create path ?...
+ECHO.  %BGlocal% 
+PAUSE
+mkdir %BGlocal%
+explorer "%BGlocal%"
+GOTO end
+
+:createFolderServer
+ECHO.
+ECHO. The path doesn't exist.
+ECHO. Do you want to create it?
+ECHO.
+PAUSE
+mkdir "%BGserver%"
+explorer "%BGserver%"
+GOTO end
+
+:end
+CLS
+
+
+
+
+

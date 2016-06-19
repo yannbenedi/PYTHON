@@ -1,0 +1,37 @@
+#--------HELP----------
+# highlight your node, RMB and select "Quick Help", a panel qill show up at your right with all the commands
+# hoover on top of the right panel and RMB and select "Show documentation"
+
+# in the Script Editor 
+# HELP / PYTHON COMMAND REFERENCE
+
+# -----MAYA ECHO ALL -----------"
+# FIRST, you need to import the Maya module in order to get access to all the MAYA COMMANDS
+import maya.cmds as mc # you no longer have to type all "maya.cmds" only "mc" 
+
+#Here are some translactions from Maya commands:
+#   CREATION
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1; # here is what maya print for the Cube creation
+mc.polyCube( w=1, h=1, d=1, sx=1, sy=1, ax=(0,1,0), cuv=1) # here is how you translate that in Python
+#     SCALE
+scale -r 3.024128 3.024128 3.024128 ; # here is what maya print for the Cube scale
+mc.scale(10,10,10, r=True) # here in Python. see how "-r" is a boolean and then need to be translated that way
+#     BEVEL
+polyBevel -offset 0.5 -offsetAsFraction 1 -autoFit 1 -segments 1 -worldSpace 1 -uvAssignment 0 -fillNgons 1 -mergeVertices 1 -mergeVertexTolerance 0.0001 -smoothingAngle 30 -miteringAngle 180 -angleTolerance 180 -ch 1 pCube1;
+mc.polyBevel('pCube1', offset=0.5, offsetAsFraction=1, autoFit=1, segments=1, worldSpace=1, uvAssignment=0, fillNgons=1, mergeVertices=1, mergeVertexTolerance=0.0001, smoothingAngle=30, miteringAngle=180, angleTolerance=180, ch=1)
+# The bevel will only work on the "pCube1", so be sure to change that an put a variable.
+
+#  SELECTION as a list
+mySel = mc.ls(sl=True) # i ve checked the "sl" command and noticed it was only one attribute, which means boolean
+
+#     FOR IN LOOP
+for x in range ( start, end, increment)
+# eg
+mySel = mc.ls(sl=True)
+SelSize = len(mySel)
+for x in range( 0, SelSize, 1):
+    rescaler = (x+1)*0.5 # (x+1) is here to avoid the first zero value for the first object
+    mc.scale (rescaler,rescaler,rescaler, mySel[x],r=True)# this will scale all the selection
+# the objects to be scaled need to be after the scale values
+
+

@@ -1,0 +1,218 @@
+---- Log FIle ----
+dir >> %logfile%   add result to log file
+set logfile=C:\Users\ybenedi.TURNER\Desktop\Log.txt
+
+---open a fodler with command prompt---
+SHIFT + MENU + RMB (menu is the key right to the right Win key)
+
+---Autotyping tool---
+type the beginning and then type TAB
+
+---- title caca ----  // add caca as title of your script
+
+---- color 0 ----  // change the text color eg 0,1,2,3... A,B,C...
+type "COLOR /?" to find all colors available
+first color is BG and then text eg color F1
+---- play a sound  ----
+powershell -c (New-Object Media.SoundPlayer "C:\Windows\Media\ringout.wav").PlaySync(); 
+take care not to have any space in the name of the file
+
+---- navigate ------
+cd.. # get to the parent folder
+cd path # get to the path
+dir path # list what is inside the path
+
+--- CREATE ENV VARIABLE ----
+SETX GUMBALL_LOCAL %local_path%
+
+---- EDIT .TXT ----
+ @echo off
+        SETLOCAL=ENABLEDELAYEDEXPANSION
+
+        rename tmp.txt tmp.tmp
+        for /f %%a in (tmp.tmp) do (
+            set foo=%%a
+            if !foo!==caca set foo=pipi
+            echo !foo! >> tmp.txt) 
+    del tmp.tmp
+
+will look for "caca" and replace it with "pipi"
+
+---- CREATE OUTPUT TOWARD A .TXT -----
+dir /b | find "GB" > listEpisode.txt
+dir will look only for things containing "GB" and redirect the OUTPUT to the .txt file
+
+---- CREATE COMMENTS
+
+REM or ::
+
+@echo off # the @ enable to stop the echo starting that point
+ECHO.Hello World!
+
+--- WILDCARD ---
+* represent one or more character
+? represent only one
+
+---- CREATE LABEL GOTO CALL----
+
+This allow you to skip certain section of the bacth file, works with GOTO
+only 8 characters
+
+IF NOT x==y (GOTO end)
+:end
+command
+
+If you use teh command CALL, it's going to go to that label,
+but it won't keep on reading the script.
+Once the Label is read, it'll go back to where it was before.
+But you need to add the Exit at the end of the Label to tell him where to stop.
+
+:end
+command
+exit /b   
+
+
+CLS clear the screen
+
+---- VARIABLE CREATION:
+
+Creation string
+SET name=John Smith 
+
+Creation integer
+SET /I number=38 
+
+example:
+@ECHO OFF
+SET name=John Smith
+ECHO %name%  # %...% access the variable
+ECHO ON
+
+---- LOCAL VARIABLE ------
+you can activate it by adding that to the top of the script.
+setlocal enabledelayedexpansion
+Setlocal EnableDelayedExpansion
+Set _var=first
+Set _var=second& Echo %_var% !_var!
+--- first second
+
+
+---- CONDITIONNAL EXECUTION----
+
+command1 & command2
+Execute command2 after execution of command1 has finished
+
+command1 && command2
+Execute command2 only if execution of command1 has finished successfully
+
+command1 || command2
+Execute command2 only if execution of command1 has finished unsuccessfully
+
+
+---- INPUT -----:
+SET var=
+SET /P var=Enter a value for var:
+
+---- CONCENTENATE STRINGS ----
+set "str1=Hello" 
+set "str2=World" 
+
+set "str3=%str1%%str2%" 
+set "str4=%str1% %str2%" 
+set "str1=%str1% DOS %str2%" (Hello DOS World )
+
+---- PROGRAM LOGIC:
+--IF:
+IF ERRORLEVEL 5 ECHO.The ERRORLEVEL is at least 5.
+# this check if the errorlevel is equal or greater than 5
+
+IF "%str1%"=="Hello." ECHO.The strings are equal.
+
+IF EXIST myfile.txt TYPE myfile.txt
+
+IF NOT EXIST myfile.txt ECHO.File missing.
+
+--ELSE:
+@ECHO OFF
+::Prompt for input.
+SET /P answer=Enter filename to delete: 
+IF EXIST %answer% (
+ DEL /P %answer%
+) ELSE (
+ ECHO.ERROR: %answer% can not be found in this folder!
+)
+ECHO ON
+
+example:
+@ECHO OFF
+
+:prompt
+::Clear the value of answer ready for use.
+SET answer=
+SET /P answer=Enter filename to delete (q to quit): 
+
+IF EXIST %answer% (
+ DEL /P %answer%
+ GOTO prompt
+)
+IF /I "%answer%"=="q" GOTO :EOF
+
+::By this point an error must have occurred as all
+::the correct entries have already been dealt with.
+ECHO.ERROR: Incorrect entry!
+GOTO prompt
+
+ECHO ON
+
+--FOR LOOP:
+for %%F IN (*.txt) DO @echo %%F    # This command will list all the files ending in .txt in the current directory.
+
+FOR /R [[drive:]path] %variable IN (set) DO command [command-parameters]
+
+FOR /L %variable IN (start,step,end) DO command [command-parameters]
+
+ FOR /F "eol=; tokens=2,3* delims=, " %i in (myfile.txt) do @echo %i %j %k
+ 
+ @echo off
+for /L %%i in (1,1,10) do (
+  echo A
+  ping -n 2 127.0.0.1 >nul & REM wait
+)
+
+
+---- CHOICE SYNYAX:
+@ECHO OFF
+REM - LABEL INDICATING THE BEGINNING OF THE DOCUMENT.
+:BEGIN
+CLS
+REM - THE BELOW LINE GIVES THE USER 3 CHOICES (DEFINED AFTER /C:)
+CHOICE /N /C:123 /M "PICK A NUMBER (1, 2, or 3)"%1
+REM - THE NEXT THREE LINES ARE DIRECTING USER DEPENDING UPON INPUT
+IF ERRORLEVEL ==3 GOTO THREE
+IF ERRORLEVEL ==2 GOTO TWO
+IF ERRORLEVEL ==1 GOTO ONE
+GOTO END
+:THREE
+ECHO YOU HAVE PRESSED THREE
+GOTO END
+:TWO
+ECHO YOU HAVE PRESSED TWO
+GOTO END
+:ONE
+ECHO YOU HAVE PRESSED ONE
+:END
+
+---- STRING PROCESSING:
+set a=abcd
+echo %a:~0,1% # start at 0, read 1 letter= a
+echo %a:~1,1% # start at 1, read 1 letter = b
+echo %a:~1,-1% # start at 1, don t read the last letter = bc
+echo %a:~1,2% # start at 1, read the next 2 letters = bc
+-- STRING REPLACEMENT
+set a=abcd & echo %a:c=% # in a, replace c with nothing = abd
+set a=abcd & echo %a:c=e% # in a, replace c with e = abed
+set a=abcd & echo %a:*c=%  # in a, replace everything up to c with nothing = d
+
+example:
+SET Var=caca
+SET Var=%Var:a=e%

@@ -1,0 +1,8 @@
+/ scale the plane so that it'll keep the same size in the scene, even when you ALT drag drop a low res layer to replace
+/the high res
+
+current_size = thisLayer.width;
+max_size = 4120;
+ratio = current_size / max_size;
+x = 1/ratio;
+[transform.scale[0]*x,transform.scale[1]*x];

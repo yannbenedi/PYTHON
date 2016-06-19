@@ -1,0 +1,33 @@
+// COMPARISON
+=== to check if things are equal
+
+// COMMENTS
+console.log(var);
+console.log("Batman glares at you");
+
+//STRINGS
+We can join strings together using the plus sign (+)
+console.log("Great to see you," + " " + name);
+
+// USER INTERACTION
+confirm("I feel awesome!");
+prompt("What is your name?");
+alert("Let's go down the first road!");
+
+// FUNCTIONS
+var sayHello = function(name) {
+    console.log('Hello ' + name);
+};
+
+// IF STATEMENT
+if ( 100 > 2 ){
+  console.log("You are good at math!");
+} else {
+  alert("Let's go down the first road!");
+}
+
+// ARRAYS
+for (obj in bateau)
+    {
+        alert(bateau[obj]);
+    }
