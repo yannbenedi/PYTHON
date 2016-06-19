@@ -13,8 +13,9 @@ from oauth2client.service_account import ServiceAccountCredentials
 import csv
 import os
 from  prompter import yesno
+import time
 
-print("TAWOG)
+print("TAWOG")
 print("BG BRIEF EXPORT TO SHOTGUN\n")
 
 def searchReplace(rangeStart,rangeEnd):
@@ -53,8 +54,13 @@ valueForShotgun = "tmp.csv"                     # csv to get the value to paste 
 
 ###################################################################
 # Ask user for which worksheet to extract info
-sheetUser = input("Type your episode name as it appears in your Gdoc sheet : \n ")
+
+sheetUser = input("Type your episode name as it appears in your Gdoc sheet : \n ").upper()
+print("Fetching briefed task on" ,sheetUser)
+print("Copy Paste these info in your SHOTGUN IMPORT TAB")
 wks = sheet.worksheet(sheetUser)
+
+
 
 listFromDoc = wks.get_all_values()              # all value from doc
 rowNumber = len(listFromDoc)                    # return the number of row to know until when we need to extract
@@ -84,6 +90,8 @@ os.startfile(valueForShotgun)                                                   
 userInput = yesno('Do you want to update your Gdoc %s Brief Status from BRIEFED to SHOTGUN?'%(sheetUser))
 if userInput == True:
     searchReplace(separatorHeader +1  , rowNumber )
+
+time.sleep(100)
 
 
 
