@@ -1,0 +1,65 @@
+@echo off
+CLS
+
+:: Install locations
+set "bridge5_user=%userprofile%\AppData\Roaming\Adobe\Bridge CS5.1"
+set "bridge6_user=%userprofile%\AppData\Roaming\Adobe\Bridge CS6"
+
+
+:: check that python is installed
+if exist "C:\Python27\pythonw.exe" (
+    
+    :: check that the gumball module is installed
+    call "T:\Team\01_RESOURCES\Python\Gumball API Package\install.bat" & echo.
+    
+    :: check that the shotgun module is installed
+    python -c "import shotgun_api3" 2>nul
+    if errorlevel 1 (
+        CD /d "T:\Team\01_RESOURCES\Python\shotgun API Package\shotgun-api3-3.0.22"
+        setup.py install
+        CD /d %~dp0
+    ) else ( echo. shotgun module already installed & echo. )
+    
+) else ( call:abort "Python 2.7 was not found, please install Python." )
+
+
+:: install for Bridge CS5.5
+CD /d %~dp0
+
+for %%i IN ("%bridge5_user%" "%bridge6_user%") DO (
+    setlocal
+    
+    if exist "%%i" (
+        echo. Installing ShotgunSearch for "%%~ni" & echo.
+        xcopy /y /Q ".\ShotgunSearch.jsx" "%%~i\Startup Scripts\" >nul
+        xcopy /y /Q ".\ShotgunSearch.jsx" "%%~i\ShotgunSearch\" >nul
+        echo. & echo.     Copied ShotgunSearch.jsx
+        xcopy /y /Q ".\include\Gumball.workspace" "%%~i\Workspaces\" >nul
+        echo.     Copied Gumball.workspace
+        xcopy /y /Q ".\js_modules" "%%~i\ShotgunSearch\js_modules\" >nul
+        echo.     Copied javascript modules
+        xcopy /y /Q ".\py_modules" "%%~i\ShotgunSearch\py_modules\" >nul
+        echo.     Copied python modules
+        xcopy /y /Q ".\include" "%%~i\ShotgunSearch\include\" >nul
+        echo.     Copied include folder
+        echo.
+    ) else ( echo. "Adobe Bridge CS5.1 was not found" )
+
+endlocal )
+
+echo.
+echo.  ---------
+echo.  Done installing Shotgun Search!
+echo.  ---------
+echo.
+pause >nul
+exit /b
+
+:abort
+echo.
+echo.  !
+echo.  %1
+echo.  !
+echo.
+pause >nul
+exit /b
