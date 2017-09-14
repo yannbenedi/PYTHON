@@ -25,16 +25,7 @@ __doc__
 __name__
 
 
-\-----------TRY EXCEPT 
-"""
-sometimes your code could run into an error TRACEBACK, then it blocks.
-You can use Try Except to keep on going by giving him an alternative way out.
-"""
-x='Hello'
-try:
-	out=int(x)          # error as x is a string
-except Exception as e:
-	print e
+
 
 
 \-----------  VARIABLES   ----------- 
@@ -282,7 +273,24 @@ To receive a list of all participants, use the "union" method:
 >>> a.union(b)
 set(['Jill', 'Jake', 'John', 'Eric'])
 
-\-----------  CONDITIONS
+\-----------  CONDITIONAL EXECUTION ------------------
+\------------ IF ---------------------
+
+\-----------TRY EXCEPT 
+"""
+sometimes your code could run into an error TRACEBACK, then it blocks.
+You can use Try Except to keep on going by giving him an alternative way out.
+"""
+x='Hello'
+try:
+    out=int(x)          # error as x is a string
+except Exception as e:
+    print e
+
+\ COMPARISON OPERATOR
+<= less equal
+== equal
+!= not equal
 
 if x != y
 means if Not Equal
@@ -292,6 +300,15 @@ They both need to be True
 
 if name == "John" or name == "Rick":
 Only one has to be True
+
+\------- elif
+Multi way
+if x = 2:
+    print("y")
+elif x > 10:
+    prin("n")
+else :
+    print("f")
 
 
 \-----------  IN OPERATOR
@@ -432,7 +449,7 @@ def sum_two_numbers(a, b):
 # after this line x will hold the value 3!
 x = sum_two_numbers(1,2)
 
-You acn prefill with default vales.
+You can prefill with default vales.
 def simple(num1,num2=10)
 simple(2) # just 1 argument is enough as num 2 is defined already
 
