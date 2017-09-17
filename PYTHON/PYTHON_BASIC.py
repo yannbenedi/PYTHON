@@ -13,7 +13,11 @@ what they do and what they know.
 Python provides several functions and utilities for code introspection.
 """
 help() 
+type()
+get the type of your element
 dir()
+all the method you can apply to a type. For Instance if it's a string, you can then type x.replace()
+
 hasattr()
 id()
 type()
@@ -191,7 +195,7 @@ webbrowser.open('http://...')
 \-----------USER INPUT 
 p2
 name=raw_input("Type your name")
-p3
+python 3
 name = input("What's your name? ")
 
 	
@@ -354,6 +358,7 @@ for a in primes:
 
 for x in xrange(0,10):
     print x
+range will give you from zero to, not including your value, so 0 to 9.
 
 list = [['first',10],['second',20],['third',30]]
 for x,y in list:
@@ -407,7 +412,7 @@ while count < 5:
 
 \-----------  WHILE ELSE ----
 the ELSE in a WHILE STATEMENT, runs when the evaluation is False
-the Break quit a loop, and CONTINUE skip the rest and continue.
+the Break quit a loop, and CONTINUE skip the rest and continue, goes back to the top of your loop.
 
 import random
 print "Lucky Numbers! 3 numbers will be generated."
