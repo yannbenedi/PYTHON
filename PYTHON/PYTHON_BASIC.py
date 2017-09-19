@@ -16,6 +16,8 @@ help()
 type()
 get the type of your element
 dir()
+good to inspect Objects, will display the Method or Attribute Fields of a Class.
+Internal Method have double underscore.
 all the method you can apply to a type. For Instance if it's a string, you can then type x.replace()
 
 hasattr()
@@ -240,13 +242,14 @@ for word in words:
         word_lengths.append(len(word))
   
 \-----------  TUPLE
-
+"""
 You can't modify it.
-
+to see what tools you can use with tuples, use dir(tuple)
+More efficient than list in term of speed and srorage if you know youwon't need t modify it.
+"""
 tupple = ('a',3,-0.2)
 print tupple[2]
-you can still access the elements of a tupple, but you can't modify them as a lits
-to see what tools you can use with tuples, use dir(tuple)
+
 
 
 
@@ -474,7 +477,15 @@ Gscene, Gbrief, GbgType = detailBG()
 
 \-----------  CLASSES AND OBJECTS
 
-#Objects are an encapsulation of variables and functions into a single entity.
+"""
+Objects are an encapsulation of variables and functions into a single entity.
+Class : a template, dog
+method : A defined capability of a class
+Field or attribute : A bit of data in a class
+Object or Instance: an instance of a class
+def__init__ : a constructor  used to set up variables.
+"""
+
 class MyClass(object):
       variable = "blah"
 
@@ -502,13 +513,24 @@ class Fruit(object):
 		else:
 			print "Don't eat me! I am super poisonous."
 
+    def__del__(self):
+        prin("Object destructed")
+
 lemon = Fruit("lemon", "yellow", "sour", False)
+# this line create the object using the class
 
 lemon.description()
 lemon.is_edible()
 
+lemon = 10
+"""
+lemon is no longer an object, by assigning 10, you made it an Int, this destroys the Object and run the destroy method.
+"""
+
 \-----------  CLASSES INHERITANCE
-# class DerivedClass(BaseClass), a class can inherit from anotehr class
+"""
+Create a new Class from an existing class, extending it
+"""
 class Shape(object):
     """Makes shapes!"""
     def __init__(self, number_of_sides):
@@ -589,7 +611,7 @@ del phonebook["John"] # remove a value
 phonebook.pop("John")  # remove a value
 
 \-----------READ
-with open("tmp.txt","r") as scoreFile:  # open as Read mode
+with open("../tmp.txt","r") as scoreFile:  # open as Read mode, ../ means going back one folder from the current one
     scoreFileReader = csv.reader(scoreFile)
     scoreList = []  # empty list to receive data
     for row in scoreFileReader:
