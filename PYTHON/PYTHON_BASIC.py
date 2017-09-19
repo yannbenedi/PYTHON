@@ -579,7 +579,7 @@ print phonebook["John"][1]
 'Jack' in phonebook
 True
 
-Ad to a dictionnary
+Add to a dictionnary
 phonebook["yann"] = 575454646
 
 for name, number in phonebook.iteritems():
