@@ -219,9 +219,21 @@ a[0] [0:3]                      #get the first 3 elements of the first element
 a.append(10)                    #add to the list
 a.insert(2,10)                  # Add 10 to the index 2
 a.remove(2)
-a.index(1)                      # iv o index of number
+a.index('cheval')                      # output index of value
 a.count(6)
-a.sort()                        # modiify and sort your list
+a.sort()                        # modiify and sort your list alpha or other
+a.extend(list)                  # will extend the list with the each element of the list
+# when using append, it'll give you a list withing a list 
+a.pop()                         # remove last value when no argu
+a.reverse()
+
+print('cheval' in a)            # to check if exist in list, return boolean
+
+# Turn list into string
+courses = ','.join(courses)     # >>> history, Math, physics
+
+# Turn string into list
+list = course_string.split(',')
 
 \----------- NESTED LIST
 # it correspond to a list in a list
@@ -256,8 +268,18 @@ print tupple[2]
 \----------- SET
 
 Sets are lists with no duplicate entries. Let's say you want to collect a list of words used in a paragraph:
-print set("my name is Eric and Eric is my name".split())
 Sets are a powerful tool in Python since they have the ability to calculate differences and intersections between other sets. 
+It doesn't care about order.
+
+courses = {'history','math'}
+print ('math' in  courses)
+
+# create empty set, 
+empty_set = {} #would give a dictionnary
+empty_set = set()
+
+print set("my name is Eric and Eric is my name".split())
+
 For example, say you have a list of participants in events A and B:
 a = set(["Jake", "John", "Eric"])
 b = set(["John", "Jill"])
